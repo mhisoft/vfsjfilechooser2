@@ -18,6 +18,11 @@
  */
 package com.googlecode.vfsjfilechooser2.filepane;
 
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.EventObject;
+import java.util.List;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -47,11 +52,6 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.text.DateFormat;
 import java.text.MessageFormat;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.EventObject;
-import java.util.List;
 
 import javax.swing.AbstractAction;
 import javax.swing.Action;
@@ -1278,7 +1278,11 @@ public final class VFSFilePane extends JPanel implements PropertyChangeListener
 
         String s = e.getPropertyName();
 
-        if (s.equals(VFSJFileChooserConstants.SELECTED_FILE_CHANGED_PROPERTY))
+        if (s.equals("viewType")) {
+            int newValue = e.getNewValue()!=null? (Integer)e.getNewValue():VIEWTYPE_DETAILS;
+            setViewType( newValue );
+        }
+        else if (s.equals(VFSJFileChooserConstants.SELECTED_FILE_CHANGED_PROPERTY))
         {
             doSelectedFileChanged(e);
         }

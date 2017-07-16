@@ -271,6 +271,10 @@ public class VFSJFileChooser extends JComponent implements Accessible
         return defaultUI.getNewFolderButton();
     }
 
+    public JDialog getDialog() {
+        return dialog;
+    }
+
     /**
      * Performs common constructor initialization and setup.
      * @param view
